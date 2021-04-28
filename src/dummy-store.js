@@ -172,7 +172,7 @@ const STORE = {
         {
             "recipe_id": "1",
             "recipe_owner": "1",
-            "tweaked_original_id": NULL,
+            "tweaked_original_id": "NULL",
             "mealDB_id": "52980",
             "recipe_name":"Stamppot",
             "recipe_pic":"https://www.themealdb.com/images/media/meals/hyarod1565090529.jpg",
