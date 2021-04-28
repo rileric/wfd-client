@@ -3,6 +3,10 @@ import Header from './Header/Header';
 import ApiContext from './ApiContext';
 import CONFIG from './config';
 import STORE from './dummy-store'
+import CuisineList from './Cuisines/CuisineList';
+import CategoryList from './Categories/CategoryList';
+import IngredientSearch from './IngredientSearch/IngredientSearch';
+import ContactForm from './ContactForm/ContactForm';
 
 class App extends Component {
 
@@ -64,6 +68,10 @@ class App extends Component {
         {/* content goes here */}
         Hello!
         <Header />
+        <CategoryList categories={this.state.categories}/>
+        <CuisineList cuisines={this.state.cuisines} />
+        <ContactForm />
+        <IngredientSearch />
       </main>
     );
   }

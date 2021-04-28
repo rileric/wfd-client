@@ -1,8 +1,23 @@
 const STORE = {
     "categories": [
-        {"strCategory": "Beef"},
-        {"strCategory": "Chicken"},
-        {"strCategory": "Vegan"},
+        {
+            "idCategory": "1",
+            "strCategory": "Beef",
+            "strCategoryDescription": "Beef description",
+            "strCategoryThumb": "https://www.themealdb.com/images/media/meals/wrustq1511475474.jpg"
+        },
+        {
+            "idCategory": "2",
+            "strCategory": "Chicken",
+            "strCategoryDescription": "Chicken description",
+            "strCategoryThumb": "https://www.themealdb.com/images/media/meals/wrustq1511475474.jpg"
+        },
+        {
+            "idCategory": "3",
+            "strCategory": "Vegan",
+            "strCategoryDescription": "Vegan description",
+            "strCategoryThumb": "https://www.themealdb.com/images/media/meals/wrustq1511475474.jpg"
+        },
     ],
 
     "cuisines": [
@@ -216,3 +231,5 @@ const STORE = {
         }
     ]
 }
+
+export default STORE;
