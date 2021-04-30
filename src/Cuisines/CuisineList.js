@@ -12,6 +12,7 @@ export default class CuisineList extends Component {
     render() {
         return (
             <section className='CuisineList'>
+                <h2>Cuisines</h2>
                 <ul>
                     {this.props.cuisines.map( cuisine =>
                         <li key={cuisine.strArea}>

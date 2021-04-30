@@ -17,11 +17,6 @@ const GetUserId = () => {
         myDebug('GetUserId user = ' + JSON.stringify(user) );
         myDebug(`GetUserId context user = ${loginContext.user_id}`);
     } 
-    else if (!isAuthenticated) {
-        loginContext.user_id = '1'; // default user
-    }
-    
-    const { logout } = useAuth0();
 
     return (
         //TODO change to the profile button

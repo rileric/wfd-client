@@ -7,6 +7,9 @@ import CuisineList from './Cuisines/CuisineList';
 import CategoryList from './Categories/CategoryList';
 import IngredientSearch from './IngredientSearch/IngredientSearch';
 import ContactForm from './ContactForm/ContactForm';
+import Footer from './Footer/Footer';
+import AddCookbook from './AddCookbook/AddCookbook';
+import About from './About/About';
 
 class App extends Component {
 
@@ -65,13 +68,14 @@ class App extends Component {
   render() {
     return (
       <main className='App'>
-        {/* content goes here */}
-        Hello!
         <Header />
         <CategoryList categories={this.state.categories}/>
         <CuisineList cuisines={this.state.cuisines} />
-        <ContactForm />
         <IngredientSearch />
+        <ContactForm />
+        <About />
+        <AddCookbook />
+        <Footer />
       </main>
     );
   }
