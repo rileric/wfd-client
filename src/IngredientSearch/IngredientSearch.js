@@ -10,7 +10,7 @@ export default class IngredientSearch extends Component {
 
     render() {
         return (
-            <section className='ingredientSearch hidden'>
+            <section className='ingredientSearch'>
                 <h2>Ingredient List</h2>
                 <form className='ingredientSearchForm' onSubmit={e => this.handleSubmit(e)}>
                     <label htmlFor='ing1'>Ingredient 1: </label>

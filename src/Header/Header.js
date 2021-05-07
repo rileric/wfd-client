@@ -1,5 +1,6 @@
 import React from 'react';
 import AuthNav from '../LoginSys/AuthNav';
+import {Link} from 'react-router-dom';
 import NavBar from '../NavBar/NavBar';
 
 const navBar = [
@@ -28,9 +29,11 @@ const navBar = [
 function Header() {
   return (
     <header className='App__header'>
-      <h1>What's for Dinner</h1>
-      <NavBar menuList={navBar} />
-      <AuthNav />
+      <h1>
+        <Link to='/' className='title'>What's for Dinner</Link>
+        <AuthNav />
+      </h1>
+      <NavBar menuList={navBar} />  
     </header>
   );
 }

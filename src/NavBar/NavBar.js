@@ -16,7 +16,7 @@ export default class NavBar extends Component {
                             tag={Link}
                             to={menuButton.buttonRoute}
                             type='button'
-                            className='NavBar__category-button'
+                            className='NavBar__linkButton'
                         >
                             {menuButton.buttonName}
                         </MenuButton>

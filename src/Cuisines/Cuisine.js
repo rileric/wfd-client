@@ -17,7 +17,7 @@ export default class Cuisine extends React.Component {
   render() {
     const { cuisine_name } = this.props;
     return (
-        <button type="button" className="cuisineButton cuisine-child" onClick={this.handleCuisineClick}><h2>{cuisine_name}</h2></button>
+        <button type="button" className="cuisineButton cuisine" onClick={this.handleCuisineClick}><h2>{cuisine_name}</h2></button>
     );
   }
 }

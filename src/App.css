@@ -1,0 +1,159 @@
+* {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+    border: black solid;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+/* Basic Section Formatting  */
+header, footer {
+    background-color: #264653;
+    border: solid #000000;
+    color: #FFFFFF;
+}
+
+.title {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+footer {
+    min-height: 80px;
+}
+
+main {
+    background-color: #2A9D8F;
+    color:#FFFFFF;
+    padding: 10px;
+}
+
+.CategoryList, .CuisineList, .CookbookList, .about, .App__mobileMenu, .RecipeList {
+    background-color: #CFF2EE;
+    color: #000000;
+    padding: 10px;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    width: 200px;
+    border: solid #264653;
+    display: block;
+    margin: auto;
+}
+
+/* Buttons and Input */
+input {
+    background-color: #CFF2EE;
+    height: 2em;
+    margin-bottom: 10px;
+}
+
+textarea, select {
+    background-color: #CFF2EE;
+}
+
+.cuisineButton, .categoryButton, .MenuButton, .cookbookButton, .backButton, .myCookbooksButton, .myRecipesButton, [type=submit], #contactFormSubmit, .MobileMenu__linkButton {
+    background-color: #E9C46A;
+    color: #000000;
+    padding: 10px;
+}
+
+.cuisineButton:hover, .categoryButton:hover, .MenuButton:hover, .cookbookButton:hover, .backButton:hover, .myCookbooksButton:hover, .myRecipesButton:hover, [type=submit]:hover, #contactFormSubmit:hover, .MobileMenu__linkButton:hover {
+    background-color: #F4A261;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul, .App__mobileMenu ul {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    list-style: none;
+}
+
+nav ul li, .NavBar__linkButton, .App__mobileMenu ul li {
+    margin: 5px;
+    text-decoration: none;
+    padding: 5px;
+    text-align: center;
+}
+
+nav ul li, .NavBar__linkButton {
+    background-color: #264653;
+    color: #FFFFFF;
+}
+
+nav ul li:last-child, .App__mobileMenu li:last-child {
+    margin-right: 0;
+    text-align: center;
+}
+
+
+/* Hide Navigation bar  */
+.App__footer .NavBar, .App__header .NavBar {
+    display: none;
+}
+
+/* Wider Screen */
+@media all and (min-width: 800px) {
+    nav ul {
+        flex-direction: row;
+    }
+    main {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .CategoryList {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .category {
+        width: 47%;
+        padding-bottom: 3%;
+        margin-bottom: 3%; /* (100-47*2)/2*/
+        position: relative;
+    }
+
+    .cuisine, .cookbook {
+        flex: 0 32%;
+        height: 100px;
+        margin-bottom: 2%;
+    }
+
+    /* show Navigation bar  */
+    .App__footer .NavBar, .App__header .NavBar {
+        display: inline;
+    }
+
+    /* Hide MobileMenu */
+    .MobileMenuButton {
+        display: none;
+    }
+
+}
+
+/* Widest Screen */
+@media all and (min-width: 1250px) {
+
+    .category {
+        width: 32%;
+        height: 150px;
+        padding-bottom: 32%; /* Same as width, sets height */
+        margin-bottom: 2%;
+        position: relative;
+    }
+}
