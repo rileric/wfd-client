@@ -9,9 +9,7 @@ const LoginButton = () => {
     const { loginWithRedirect } = useAuth0();
     const loginContext = useContext(ApiContext);
 
-    myDebug(`LoginButton, pre-user: ${loginContext.user_id}`);
     loginContext.user_id = '1';
-    myDebug(`LoginButton, post-user: ${loginContext.user_id}`);
 
 
     return (

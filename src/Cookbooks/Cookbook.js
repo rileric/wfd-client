@@ -16,7 +16,6 @@ export default class Cookbook extends React.Component {
 
   render() {
       const cookbook = this.props.cookbook;
-      myDebug(`Cookbook name = ${cookbook.cookbook_name}`);
 
     return (
         <div className="cookbook">

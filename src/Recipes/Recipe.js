@@ -10,7 +10,6 @@ export default class Recipe extends React.Component {
 
   render() {
       const recipe = this.props.recipe;
-      myDebug(`Recipe = `, recipe);
       const ingredientList = recipe.recipe_ingredient_list;
       
 

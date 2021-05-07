@@ -18,11 +18,9 @@ export default class RandomRecipes extends Component {
         let convertedRecipes = [];
         this.props.preRecipes.forEach( mealDBRecipe => {
             let postConvert = convertMealDBtoWFD(mealDBRecipe);
-            myDebug('postConverted Recipe = ', postConvert);
             convertedRecipes.push(postConvert);
         });
         this.props.recipes.forEach( recipe => convertedRecipes.push(recipe) );
-        myDebug('convertedRecipes = ', convertedRecipes);
 
         return (
             <section className='RandomRecipes'>

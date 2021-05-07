@@ -13,10 +13,6 @@ export default class CookbookList extends Component {
 
     render() {
 
-        this.props.cookbooks.map( cookbook => {
-            myDebug('CookbookList: ', cookbook);
-        })
-
         return (
             <section className='CookbookList'>
                 <h2>Cookbooks</h2>

@@ -14,8 +14,6 @@ const GetUserId = () => {
 
     if(isAuthenticated && (loginContext.user_id !== user.sub) ) {
         loginContext.user_id = user.sub;
-        myDebug('GetUserId user = ' + JSON.stringify(user) );
-        myDebug(`GetUserId context user = ${loginContext.user_id}`);
     } 
 
     return (

@@ -13,9 +13,6 @@ export default class RecipeList extends Component {
 
     render() {
         const recipeList = this.props.recipes;
-        recipeList.map( recipe => {
-            myDebug('RecipeList: ', recipe);
-        });
 
         return (
             <section className='RecipeList'>
