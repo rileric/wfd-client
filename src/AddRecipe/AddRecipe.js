@@ -99,12 +99,12 @@ export default class AddRecipe extends Component {
                             id= 'recipeName'
                             required
                         />
-                    <label htmlFor='recipe_category'>Type: </label>
+                    <label htmlFor='recipe_category'>Category: </label>
                         <select id='recipe_category' name='recipe_category' onChange={this.handleInputChange}>
                             <option value='none'>Select one...</option>
                             {categoryListMenu}
                         </select>
-                    <label htmlFor='recipe_cuisine'>Type: </label>
+                    <label htmlFor='recipe_cuisine'>Cuisine: </label>
                         <select id='recipe_cuisine' name='recipe_cuisine' onChange={this.handleInputChange}>
                             <option value='none'>Select one...</option>
                             {cuisineListMenu}
