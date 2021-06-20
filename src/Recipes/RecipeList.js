@@ -13,13 +13,14 @@ export default class RecipeList extends Component {
 
     render() {
         const recipeList = this.props.recipes;
+        myDebug('recipeList = ', recipeList);
         let counter = 0;
         return (
             <section className='RecipeList'>
                 <h2>Recipes</h2>
                 <ul className='RecipeList-list'>
                     {recipeList.map( singleRecipe =>
-                        <li key={counter++} className='RecipeList-item' >                  
+                        <li key={counter++} className='RecipeList-item' >               
                             <Recipe recipe={singleRecipe}  key={counter + '_recipe'} />
                             <hr className='recipe-break' key={counter + '_break'} />
                         </li>                 

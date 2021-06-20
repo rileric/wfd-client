@@ -31,7 +31,7 @@ export default class RandomRecipes extends Component {
               if(!randomRes.ok) {
                 return randomRes.json().then(err => Promise.reject(err));
               }
-                return JSON.stringify( [randomRes.json()] );           
+                return Promise.all([randomRes.json()]);           
             })
             .then(([randomResJson]) => {
               this.setState({
@@ -46,12 +46,14 @@ export default class RandomRecipes extends Component {
     render() {
 
         let convertedRecipes = [];
-        this.state.mealDBRecipes.forEach( recipe => convertedRecipes.push(recipe) );
+        myDebug('mealDBRecipes = ', this.state.mealDBRecipes);
+        this.state.mealDBRecipes.map( recipe => convertedRecipes.push(recipe) );
+        this.state.mealDBRecipes.map(recipe => myDebug('recipe = ', recipe) );
 
         return (
             <section className='RandomRecipes'>
                 <h2>Random</h2>
-                <RecipeList recipes={convertedRecipes} />
+                { (convertedRecipes.length > 0) ? <RecipeList recipes={convertedRecipes} /> : <p>Unable to fetch recipes.</p>}
             </section>
         )
     }

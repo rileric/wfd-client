@@ -12,6 +12,7 @@ export default class Recipe extends React.Component {
       const recipe = this.props.recipe;
       const ingredientList = recipe.recipe_ingredient_list;
       let counterKey = 0;
+      myDebug(`recipe=${recipe.recipe_name} ingredientList = `, ingredientList);
       
 
     return (
@@ -25,8 +26,8 @@ export default class Recipe extends React.Component {
                 </div>
             </div>
             <div className='ingredientList' key={counterKey++}>
-                {ingredientList.map(ingredient =>
-                    <p className='ingredient' key={counterKey++}>{ingredient}</p>)}
+                {/* ingredientList.map(ingredient =>
+                    <p className='ingredient' key={counterKey++}>{ingredient}</p>) */}
             </div>
             <hr className='recipe-divider' key={counterKey++}/>
             <pre key={counterKey++}>{recipe.recipe_instructions}</pre>
@@ -38,7 +39,7 @@ export default class Recipe extends React.Component {
 
 Recipe.propTypes = {
     recipe: PropTypes.shape({
-        recipe_id: PropTypes.string,
+        recipe_id: PropTypes.number,
         recipe_owner: PropTypes.string,
         recipe_name: PropTypes.string.isRequired, // only consistent item between MealDB and internal recipes
         mealDB_id:PropTypes.string,
