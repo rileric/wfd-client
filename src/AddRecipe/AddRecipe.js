@@ -54,14 +54,11 @@ class AddRecipe extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        myDebug('Submitted AddRecipe');
-        myDebug('user_id = ', this.state.recipe_owner);
-        let testOwner = this.context.user_id;
-        myDebug('testOwner = ', testOwner);
+        let owner = this.context.user_id;
         let url = `${config.API_ENDPOINT}/recipes`;
 
         let newRecipe = {
-            recipe_owner: testOwner,
+            recipe_owner: owner,
             recipe_name: this.state.recipe_name,
             mealdb_id: '', // even tweaked MealDB recipes should not have this populated
             recipe_pic: this.state.recipe_pic,
@@ -78,8 +75,6 @@ class AddRecipe extends Component {
         if(this.state.recipe_id) {
             newRecipe['recipe_id']= this.state.recipe_id;
         }
-
-        myDebug('submitted newRecipe: ', newRecipe);
 
         const options = {
             method: 'POST',
@@ -98,7 +93,6 @@ class AddRecipe extends Component {
                     throw new Error('Something went wrong, please try again later');
                 }
                 else {
-                    myDebug('No issues with request');
                     return res.json();
                 }
             })

@@ -11,8 +11,6 @@ class IngredientSearch extends Component {
         const inputName = event.target.name;
         const inputValue = event.target.value;
 
-        myDebug('inputName: ', inputName);
-        myDebug('inputValue: ', inputValue);
         this.setState({
             [inputName]: inputValue
         });
@@ -21,8 +19,6 @@ class IngredientSearch extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        myDebug('Submitted IngredientSearchForm');
-        myDebug('search state: ', this.state);
 
         let ingredientList = [];
 
@@ -32,9 +28,7 @@ class IngredientSearch extends Component {
                 ingredientList.push(value);
             }
         }
-        myDebug('ingredientList = ', ingredientList);
         let searchString = ingredientList.join('%2C');
-        myDebug('searchString = ', searchString);
         this.props.history.push(`search/${searchString}`);
     }
 

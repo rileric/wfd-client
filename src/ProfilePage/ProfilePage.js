@@ -22,8 +22,6 @@ class ProfilePage extends Component {
 
     componentDidMount() {
         let user_id = this.context.user_id;
-        myDebug('Profile page mounted: ', user_id);
-        myDebug('recipes.length = ' , this.props.recipes.length);
         this.context.userLogin(user_id);
     }
 

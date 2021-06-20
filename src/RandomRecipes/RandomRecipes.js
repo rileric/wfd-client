@@ -16,7 +16,6 @@ export default class RandomRecipes extends Component {
     }
 
     componentDidMount() {
-        myDebug(' RandomRecipes component mounted');
         const options = {
             method: 'GET',
             headers: {
@@ -46,9 +45,7 @@ export default class RandomRecipes extends Component {
     render() {
 
         let convertedRecipes = [];
-        myDebug('mealDBRecipes = ', this.state.mealDBRecipes);
         this.state.mealDBRecipes.map( recipe => convertedRecipes.push(recipe) );
-        this.state.mealDBRecipes.map(recipe => myDebug('recipe = ', recipe) );
 
         return (
             <section className='RandomRecipes'>

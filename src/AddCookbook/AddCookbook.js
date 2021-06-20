@@ -38,7 +38,6 @@ class AddCookbook extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        myDebug('Submitted AddCookbook');
         let url = `${config.API_ENDPOINT}/cookbooks`;
 
         let newCookbook = {
@@ -64,7 +63,6 @@ class AddCookbook extends Component {
                     throw new Error('Something went wrong, please try again later');
                 }
                 else {
-                    myDebug('No issues with request');
                     return res.json();
                 }
             })
@@ -79,7 +77,6 @@ class AddCookbook extends Component {
     }
 
     render() {
-        myDebug(`PRE-set cookbook_public = ${this.state.cookbook_public}`);
 
         return (
             <form className='addCookbook-form' onSubmit={e => this.handleSubmit(e)}>

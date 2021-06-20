@@ -11,9 +11,7 @@ export default class Recipe extends React.Component {
   render() {
       const recipe = this.props.recipe;
       const ingredientList = recipe.recipe_ingredient_list;
-      let counterKey = 0;
-      myDebug(`recipe=${recipe.recipe_name} ingredientList = `, ingredientList);
-      
+      let counterKey = 0;      
 
     return (
         <section className='recipe' id={recipe.recipe_id  + '_' + recipe.mealdb_id} key={counterKey++} >
@@ -26,8 +24,8 @@ export default class Recipe extends React.Component {
                 </div>
             </div>
             <div className='ingredientList' key={counterKey++}>
-                {/* ingredientList.map(ingredient =>
-                    <p className='ingredient' key={counterKey++}>{ingredient}</p>) */}
+                {ingredientList.map(ingredient =>
+                    <p className='ingredient' key={counterKey++}>{ingredient}</p>)}
             </div>
             <hr className='recipe-divider' key={counterKey++}/>
             <pre key={counterKey++}>{recipe.recipe_instructions}</pre>

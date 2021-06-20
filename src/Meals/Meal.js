@@ -14,9 +14,6 @@ class Meal extends Component {
     const recipe_name = this.props.recipe_name;
     const recipe_id = this.props.recipe_id;
     const mealdb_id = this.props.mealdb_id;
-    myDebug('recipe clicked: ', recipe_name);
-    myDebug('recipe_id = ', recipe_id);
-    myDebug('mealdb_id = ', mealdb_id);
 
     if(mealdb_id && !recipe_id) {
         this.props.history.push(`/recipes/mealdb/${mealdb_id}`);

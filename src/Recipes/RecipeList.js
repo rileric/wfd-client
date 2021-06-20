@@ -13,7 +13,6 @@ export default class RecipeList extends Component {
 
     render() {
         const recipeList = this.props.recipes;
-        myDebug('recipeList = ', recipeList);
         let counter = 0;
         return (
             <section className='RecipeList'>

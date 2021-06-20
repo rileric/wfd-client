@@ -68,9 +68,7 @@ class App extends Component {
       })
       .then(([oneTimeResJson, pubRecipesResJson, pubCookbooksResJson]) => {
         this.setCategoriesAndCuisines(oneTimeResJson.categories, oneTimeResJson.cuisines);
-        // myDebug('pubRecipesResJson = ', pubRecipesResJson);
         pubRecipesResJson.map(recipe => this.handleAddRecipe(recipe) );
-        // myDebug('pubCookbooksResJson = ', pubCookbooksResJson);
         pubCookbooksResJson.map(cookbook => this.handleAddCookbook(cookbook) );
       })
       .catch(error => {
@@ -103,8 +101,6 @@ class App extends Component {
           return Promise.all( [privRecipesRes.json(), privCookbooksRes.json() ] );
       })
       .then(([privRecipesResJson, privCookbooksResJson]) => {
-        myDebug('privRecipesResJson = ', privRecipesResJson);
-        myDebug('privCookbooksResJson = ', privCookbooksResJson);
         privRecipesResJson.map(recipe => this.handleAddRecipe(recipe) );
         privCookbooksResJson.map(cookbook => this.handleAddCookbook(cookbook) );
       })
