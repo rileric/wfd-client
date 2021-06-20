@@ -13,9 +13,9 @@ export default class CategoryList extends Component {
         return (
             <section className='CategoryList'>
                 <h2>Categories</h2>
-                <ul>
+                <ul className='CategoryList-list' >
                     {this.props.categories.map( category =>
-                        <li key={category.idCategory}>
+                        <li key={category.idCategory} className='CategoryList-item' >
                             <Category
                                 category_id={category.idCategory}
                                 category_name={category.strCategory}

@@ -13,19 +13,23 @@ const GetUserId = () => {
     const loginContext = useContext(ApiContext);
 
     if(isAuthenticated && (loginContext.user_id !== user.sub) ) {
-        loginContext.user_id = user.sub;
+        let splitUserSub = user.sub.split('|');
+        let formattedUserSub = splitUserSub[0] + '_' + splitUserSub[1];
+        loginContext.user_id = formattedUserSub;
     } 
+    
 
     return (
-        //TODO change to the profile button
-        <MenuButton
-            tag={Link}
-            to='/profile'
-            type='button'
-            className='AuthNav__profile-button'
-        >
-            Profile
-        </MenuButton>
+        isAuthenticated && (
+            <MenuButton
+                tag={Link}
+                to='/profile'
+                type='button'
+                className='AuthNav__profile-button'
+            >
+                Profile
+            </MenuButton>
+        )
     );
 
 };

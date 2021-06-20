@@ -16,9 +16,9 @@ export default class CookbookList extends Component {
         return (
             <section className='CookbookList'>
                 <h2>Cookbooks</h2>
-                <ul>
+                <ul className='CookbookList-list'>
                     {this.props.cookbooks.map( cookbook =>
-                        <li key={cookbook.cookbook_id}>
+                        <li key={cookbook.cookbook_id} className='CookbookList-item'>
                             <Cookbook cookbook={cookbook} />
                         </li> 
                     )}

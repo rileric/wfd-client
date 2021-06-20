@@ -5,11 +5,11 @@ import MenuButton from '../MenuButton/MenuButton';
 const menuList = [
     {
         buttonName:'Category',
-        buttonRoute:'/category',
+        buttonRoute:'/categories',
     },
     {
         buttonName:'Cuisine',
-        buttonRoute:'/cuisine',
+        buttonRoute:'/cuisines',
     },
     {
         buttonName:'Random',
@@ -17,7 +17,7 @@ const menuList = [
     },
     {
         buttonName:'Ingredients',
-        buttonRoute:'/recipe/search',
+        buttonRoute:'/recipes/search',
     },
     {
         buttonName:'Contact',
@@ -29,12 +29,16 @@ const menuList = [
     },
     {
         buttonName:'New Cookbook',
-        buttonRoute:'/cookbook/new',
+        buttonRoute:'/cookbooks/new',
     },
     {
         buttonName:'New Recipe',
-        buttonRoute:'/recipe/new',
+        buttonRoute:'/recipes/new',
     },
+    {
+        buttonName: 'Profile',
+        buttonRoute: '/profile'
+    }
 ];
 
 function MobileMenu() {

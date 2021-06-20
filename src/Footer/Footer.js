@@ -8,13 +8,14 @@ const footBar = [
         buttonName:'About',
         buttonRoute:'/about',
     },
+    /* Removing cookbook functionality for now.
     {
         buttonName:'New Cookbook',
-        buttonRoute:'/cookbook/new',
-    },
+        buttonRoute:'/cookbooks/new',
+    }, */
     {
-        buttonName:'New Recipe',
-        buttonRoute:'/recipe/new',
+        buttonName:'Contact',
+        buttonRoute:'/contact',
     },
 
 ];

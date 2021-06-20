@@ -15,7 +15,7 @@ const LoginButton = () => {
     return (
         <MenuButton
             tag='button'
-            className='login-btn'
+            className='MenuButton login-btn'
             onClick={() => loginWithRedirect()}
         >
             Log In

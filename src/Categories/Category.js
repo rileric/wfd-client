@@ -1,24 +1,26 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import ApiContext from '../ApiContext';
 import PropTypes from 'prop-types';
 
 const myDebug = console.log;
 
-export default class Category extends React.Component {
+class Category extends Component {
 
   static contextType = ApiContext;
 
   handleCategoryClick = e => {
     e.preventDefault();
-    const category_id = this.props.category_id;
-    myDebug(`Category clicked: ${category_id}`);
+    const category_name = this.props.category_name;
+    this.props.history.push(`/categories/${category_name}`);
   }
 
   render() {
     const { category_id, category_name, category_description, category_pic } = this.props
+
     return (
-        <div className="category">
-            <button type="button" className="categoryButton" onClick={this.handleCategoryClick}><h2>{category_name}</h2></button>
+        <div className="Category">
+            <button type="button" className="CategoryButton" onClick={this.handleCategoryClick}><h2>{category_name}</h2></button>
             <p>{category_description}</p>
         </div>
     )
@@ -29,5 +31,8 @@ Category.propTypes = {
     category_id: PropTypes.string.isRequired,
     category_name: PropTypes.string.isRequired,
     category_description: PropTypes.string.isRequired,
-    category_pic: PropTypes.string.isRequired
+    category_pic: PropTypes.string.isRequired,
+    history: PropTypes.object,
 }
+
+export default withRouter(Category);

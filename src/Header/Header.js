@@ -6,11 +6,11 @@ import NavBar from '../NavBar/NavBar';
 const navBar = [
   {
       buttonName:'Category',
-      buttonRoute:'/category',
+      buttonRoute:'/categories',
   },
   {
       buttonName:'Cuisine',
-      buttonRoute:'/cuisine',
+      buttonRoute:'/cuisines',
   },
   {
       buttonName:'Random',
@@ -18,11 +18,11 @@ const navBar = [
   },
   {
       buttonName:'Ingredients',
-      buttonRoute:'/recipe/search',
+      buttonRoute:'/recipes/search',
   },
   {
-      buttonName:'Contact',
-      buttonRoute:'/contact',
+    buttonName:'New Recipe',
+    buttonRoute:'/recipes/new',
   },
 ];
 

@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {Route,Link} from 'react-router-dom';
 import ApiContext from './ApiContext';
-import CONFIG from './config';
+import config from './config';
 
 import Header from './Header/Header';
+import MainErrorBoundary from './MainErrorBoundary/MainErrorBoundary';
 import CuisineList from './Cuisines/CuisineList';
 import CategoryList from './Categories/CategoryList';
+import MealList from './Meals/MealList';
 import IngredientSearch from './IngredientSearch/IngredientSearch';
 import ContactForm from './ContactForm/ContactForm';
 import Footer from './Footer/Footer';
@@ -17,6 +19,7 @@ import './App.css';
 import ProfilePage from './ProfilePage/ProfilePage';
 import MobileMenu from './MobileMenu/MobileMenu';
 import RandomRecipes from './RandomRecipes/RandomRecipes';
+import RecipeResult from './Recipes/RecipeResult';
 import AddRecipe from './AddRecipe/AddRecipe';
 
 const myDebug = console.log;
@@ -24,16 +27,94 @@ const myDebug = console.log;
 class App extends Component {
 
   state = {
-    categories: STORE.categories,
-    cuisines: STORE.cuisines,
-    preRecipes: STORE.preRecipes, // MealDB recipe
-    recipes: STORE.recipes, // internal recipe
+    categories: [], //STORE.categories,
+    cuisines: [], // STORE.cuisines,
+    recipes: [],//STORE.recipes,  internal recipe
     cookbooks: STORE.cookbooks,
     cookbookRecipes: STORE.cookbookRecipes,
   }
 
+  setCategoriesAndCuisines = (categoriesArray, cuisinesArray) => {
+    this.setState({
+      categories: categoriesArray,
+      cuisines: cuisinesArray
+    });
+  }
+
+  oneTimeFetches = () => {
+    const options = {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${config.API_KEY}`
+      }
+    };
+    Promise.all([
+      fetch(`${config.API_ENDPOINT}/meal-db-one-time`, options),
+      fetch(`${config.API_ENDPOINT}/recipes/public`, options),
+      fetch(`${config.API_ENDPOINT}/cookbooks/public`, options),
+    ])
+      .then(([oneTimeRes, pubRecipesRes, pubCookbooksRes]) => {
+        if(!oneTimeRes.ok) {
+          return oneTimeRes.json().then(err => Promise.reject(err));
+        }
+        if(!pubRecipesRes.ok) {
+          return pubRecipesRes.json().then(err => Promise.reject(err));
+        }
+        if(!pubCookbooksRes.ok) {
+          return pubCookbooksRes.json().then(err => Promise.reject(err));
+        }
+          return Promise.all( [oneTimeRes.json(), pubRecipesRes.json(), pubCookbooksRes.json() ] );
+      })
+      .then(([oneTimeResJson, pubRecipesResJson, pubCookbooksResJson]) => {
+        this.setCategoriesAndCuisines(oneTimeResJson.categories, oneTimeResJson.cuisines);
+        // myDebug('pubRecipesResJson = ', pubRecipesResJson);
+        pubRecipesResJson.map(recipe => this.handleAddRecipe(recipe) );
+        // myDebug('pubCookbooksResJson = ', pubCookbooksResJson);
+        pubCookbooksResJson.map(cookbook => this.handleAddCookbook(cookbook) );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    
+  }
+
+  fetchPrivateRecipesAndCookbooks(user_id) {
+
+    const options = {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${config.API_KEY}`
+      }
+    };
+    Promise.all([
+      fetch(`${config.API_ENDPOINT}/recipes/private/${user_id}`, options),
+      fetch(`${config.API_ENDPOINT}/cookbooks/private/${user_id}`, options),
+    ])
+      .then(([privRecipesRes, privCookbooksRes]) => {
+
+        if(!privRecipesRes.ok) {
+          return privRecipesRes.json().then(err => Promise.reject(err));
+        }
+        if(!privCookbooksRes.ok) {
+          return privCookbooksRes.json().then(err => Promise.reject(err));
+        }
+          return Promise.all( [privRecipesRes.json(), privCookbooksRes.json() ] );
+      })
+      .then(([privRecipesResJson, privCookbooksResJson]) => {
+        myDebug('privRecipesResJson = ', privRecipesResJson);
+        myDebug('privCookbooksResJson = ', privCookbooksResJson);
+        privRecipesResJson.map(recipe => this.handleAddRecipe(recipe) );
+        privCookbooksResJson.map(cookbook => this.handleAddCookbook(cookbook) );
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   componentDidMount() {
-    // Add initial fetches here
+    this.oneTimeFetches();
   }
 
   // Recipes
@@ -76,6 +157,10 @@ class App extends Component {
     });
   }
 
+  handleLogin = (user_id) => {
+    this.fetchPrivateRecipesAndCookbooks(user_id);
+  }
+
   renderScreenView() {
     return (
       <>
@@ -87,44 +172,59 @@ class App extends Component {
             component={About}
           />
         ))}
-        <Route path='/category'>
-          <CategoryList categories={this.state.categories}/>
-        </Route>
-        <Route path='/cuisine'>
-          <CuisineList cuisines={this.state.cuisines} />
-        </Route>
-        <Route path='/random'>
-          <RandomRecipes preRecipes={this.state.preRecipes} recipes={this.state.recipes} />
-        </Route>
-        <Route path='/recipe/search'>
-          <IngredientSearch />
-        </Route>
-        <Route path='/contact'>
-          <ContactForm />
-        </Route>
-        <Route path='/cookbook/new'>
-          <AddCookbook />
-        </Route>
-        <Route path='/recipe/new'>
-          <AddRecipe />
-        </Route>
-        <Route path='/profile'>
-          <ProfilePage cookbooks={this.state.cookbooks} recipes={this.state.recipes} />
-        </Route>
-        <Route path='/menu'>
-          <MobileMenu />
-        </Route>
+        <MainErrorBoundary>
+          <Route path='/categories' exact>
+            <CategoryList categories={this.state.categories}/>
+          </Route>
+          <Route path='/categories/:searchString'
+            render={(props) => <MealList searchType='categories' recipes={this.state.recipes} {...props} /> } 
+          />
+          <Route path='/cuisines' exact>
+            <CuisineList cuisines={this.state.cuisines} />
+          </Route>
+          <Route path='/cuisines/:searchString'
+            render={(props) => <MealList searchType='cuisines' recipes={this.state.recipes} {...props} /> } 
+          />
+          <Route path='/random'>
+            <RandomRecipes recipes={this.state.recipes} />
+          </Route>
+          <Route path='/recipes/search' exact>
+            <IngredientSearch />
+          </Route>
+          <Route path='/recipes/search/:searchString'
+            render={(props) => <MealList searchType='ingredients' recipes={this.state.recipes} {...props} /> } 
+          />
+          <Route path='/recipes/mealdb/:search_id'
+            render={(props) => <RecipeResult fetchType='mealdb' {...props} /> } 
+          />
+          <Route path='/contact'>
+            <ContactForm />
+          </Route>
+          <Route path='/cookbooks/new'>
+            <AddCookbook />
+          </Route>
+          <Route path='/recipes/new'>
+            <AddRecipe />
+          </Route>
+          <Route path='/profile'>
+            <ProfilePage cookbooks={this.state.cookbooks} recipes={this.state.recipes} />
+          </Route>
+          <Route path='/menu'>
+            <MobileMenu />
+          </Route>
+        </MainErrorBoundary>
       </>
     )
   }
 
   render() {
+
     const value = {
       categories: this.state.categories,
       cuisines: this.state.cuisines,
       recipes: this.state.recipes,
       cookbooks: this.state.cookbooks,
-      cookbookRecipes: this.state.cookbooks,
+      cookbookRecipes: this.state.cookbookRecipes,
       addRecipe: this.handleAddRecipe,
       updateRecipe: () => {},
       deleteRecipe: this.handleDeleteRecipe,
@@ -132,6 +232,7 @@ class App extends Component {
       deleteCookbook: this.handleDeleteCookbook,
       addCookbookRecipe: this.handleAddCookbookRecipe,
       deleteCookbookRecipe: this.handleDeleteCookbookRecipe,
+      userLogin: this.handleLogin,
       user_id: '1'
     }
 

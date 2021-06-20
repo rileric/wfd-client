@@ -18,8 +18,8 @@ export default class Cookbook extends React.Component {
       const cookbook = this.props.cookbook;
 
     return (
-        <div className="cookbook">
-            <button type="button" className="cookbookButton" onClick={this.handleCookbookClick}><h2>{cookbook.cookbook_name}</h2></button>
+        <div className="Cookbook">
+            <button type="button" className="CookbookButton" onClick={this.handleCookbookClick}><h2>{cookbook.cookbook_name}</h2></button>
         </div>
     )
   }

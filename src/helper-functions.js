@@ -20,7 +20,7 @@ export const convertMealDBtoWFD = (mealDBRecipe) => {
         recipe_id: '',
         recipe_owner: '1', // default user
         recipe_name: mealDBRecipe.strMeal,
-        mealDB_id: mealDBRecipe.idMeal,
+        mealdb_id: mealDBRecipe.idMeal,
         recipe_pic: mealDBRecipe.strMealThumb,
         recipe_cuisine: mealDBRecipe.strArea,
         recipe_category:mealDBRecipe.strCategory,

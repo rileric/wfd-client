@@ -1,8 +1,10 @@
 import { Component } from 'react';
+import config from '../config';
 import ApiContext from '../ApiContext';
+import { withRouter } from 'react-router-dom';
 
 const myDebug = console.log;
-export default class AddRecipe extends Component {
+class AddRecipe extends Component {
 
     static defaultProps = {
         recipe: {},
@@ -13,10 +15,10 @@ export default class AddRecipe extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            recipe_id: '',
+            recipe_id: null,
             recipe_owner: '1', // default user
             recipe_name: '',
-            mealDB_id: '',
+            mealdb_id: '',
             recipe_pic: '',
             recipe_cuisine: '',
             recipe_category: '',
@@ -26,17 +28,87 @@ export default class AddRecipe extends Component {
             recipe_video: '', // don't let users populate this
             tweaked_original_id: '', 
             recipe_source: '',
+            recipe_public: true,
             nameTouched: false,
             categoryTouched: false,
             cuisineTouched: false,
         }
     }
 
-    
+    handlePublicCheckbox = (event) => {
+        this.setState({
+            recipe_public: !this.state.recipe_public // starts as true (checked)
+        });
+
+    }
+
+    validateName() {
+        const trimName = this.state.recipe_name.trim();
+
+        if(this.state.nameTouched) {
+            if(trimName.length === 0) {
+                return( "Name is required and cannot be whitespace.");
+            }
+        }
+    }
 
     handleSubmit(event) {
         event.preventDefault();
-        myDebug('Submitted IngredientSearchForm');
+        myDebug('Submitted AddRecipe');
+        myDebug('user_id = ', this.state.recipe_owner);
+        let testOwner = this.context.user_id;
+        myDebug('testOwner = ', testOwner);
+        let url = `${config.API_ENDPOINT}/recipes`;
+
+        let newRecipe = {
+            recipe_owner: testOwner,
+            recipe_name: this.state.recipe_name,
+            mealdb_id: '', // even tweaked MealDB recipes should not have this populated
+            recipe_pic: this.state.recipe_pic,
+            recipe_cuisine: this.state.recipe_cuisine,
+            recipe_category: this.state.recipe_category,
+            recipe_ingredient_list: this.state.recipe_ingredient_list.split('\n'),
+            recipe_instructions: this.state.recipe_instructions,
+            recipe_tags: this.state.recipe_tags.split(','),
+            recipe_video: '', // don't let users populate this
+            tweaked_original_id: '', // TODO will come from props
+            recipe_source: this.state.recipe_source,
+            recipe_public: this.state.recipe_public,
+        }
+        if(this.state.recipe_id) {
+            newRecipe['recipe_id']= this.state.recipe_id;
+        }
+
+        myDebug('submitted newRecipe: ', newRecipe);
+
+        const options = {
+            method: 'POST',
+            body: JSON.stringify({
+                recipe: newRecipe
+            }),
+            headers: {
+                'content-type': 'application/json',
+                'Authorization': `Bearer ${config.API_KEY}`
+            }
+        };
+
+        fetch(url, options)
+            .then( res => {
+                if(!res.ok) {
+                    throw new Error('Something went wrong, please try again later');
+                }
+                else {
+                    myDebug('No issues with request');
+                    return res.json();
+                }
+            })
+            .then( recipe => {
+                this.props.history.push('/'); // not working
+                this.context.addRecipe(recipe);
+            })
+            .catch(err => {
+                console.log('Error during AddRecipe.js: ', err);
+            });
     }
 
     handleInputChange = (event) => {
@@ -46,7 +118,7 @@ export default class AddRecipe extends Component {
         this.setState({
             [inputName]: inputValue
         });
-
+        
         if(inputName === 'recipe_name') {
             this.setState({
                 nameTouched: true
@@ -64,10 +136,10 @@ export default class AddRecipe extends Component {
                 cuisineTouched: true
             });
         }
+        
     }
 
     render() {
-
         const categoryList = this.context.categories;
         const categoryListMenu = categoryList.map(
             (categoryOption) => <option value={categoryOption.strCategory} key={categoryOption.strCategory}>{categoryOption.strCategory}</option>
@@ -91,14 +163,17 @@ export default class AddRecipe extends Component {
             <section className='ingredientSearch'>
                 <h2>{pageTitle}</h2>
                 <form className='ingredientSearchForm' onSubmit={e => this.handleSubmit(e)}>
-                    <label htmlFor='recipeName'>Recipe name: </label>
+                    <label htmlFor='recipe_name'>Recipe name: </label>
                         <input
                             type='text'
                             className='addRecipeName'
-                            name= 'recipeName'
-                            id= 'recipeName'
+                            name= 'recipe_name'
+                            id= 'recipe_name'
+                            onChange={this.handleInputChange}
                             required
                         />
+                    <label htmlFor='recipe_public'>Public: </label>
+                        <input type='checkbox' id='recipe_public' name='recipe_public' checked={this.state.recipe_public} onChange={e => this.handlePublicCheckbox(e)} />
                     <label htmlFor='recipe_category'>Category: </label>
                         <select id='recipe_category' name='recipe_category' onChange={this.handleInputChange}>
                             <option value='none'>Select one...</option>
@@ -109,14 +184,16 @@ export default class AddRecipe extends Component {
                             <option value='none'>Select one...</option>
                             {cuisineListMenu}
                         </select>
-                    <label htmlFor='ingredient-list'>Ingredients (each line should contain measurement and ingredient):</label>
-                        <textarea id='ingredient-list' name='ingredient-textarea'></textarea>
-                    <label htmlFor='instructions'>Instructions:</label>
-                        <textarea id='instructions' name='instructions-textarea'></textarea>
-                    <button type='submit' className='recipeSubmit' id='recipeSubmit'>Submit</button> 
+                    <label htmlFor='recipe_ingredient_list'>Ingredients (each line should contain measurement and ingredient):</label>
+                        <textarea id='recipe_ingredient_list' name='recipe_ingredient_list' onChange={this.handleInputChange}></textarea>
+                    <label htmlFor='recipe_instructions'>Instructions:</label>
+                        <textarea id='recipe_instructions' name='recipe_instructions' onChange={this.handleInputChange}></textarea>
+                    <button type='submit' className='recipeSubmit' id='recipeSubmit' disabled={this.validateName()}>Submit</button> 
                 </form>
             </section>          
         )
     }
      
 }
+
+export default withRouter(AddRecipe);
