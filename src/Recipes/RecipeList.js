@@ -2,8 +2,6 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Recipe from './Recipe';
 
-const myDebug=console.log;
-
 export default class RecipeList extends Component {
 
     static defaultProps = {

@@ -3,8 +3,6 @@ import ApiContext from '../ApiContext';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
-const myDebug = console.log;
-
 class Cuisine extends React.Component {
 
   static contextType = ApiContext;

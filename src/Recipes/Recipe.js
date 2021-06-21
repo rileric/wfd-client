@@ -2,8 +2,6 @@ import React from 'react';
 import ApiContext from '../ApiContext';
 import PropTypes from 'prop-types';
 
-const myDebug = console.log;
-
 export default class Recipe extends React.Component {
 
   static contextType = ApiContext;
@@ -20,12 +18,12 @@ export default class Recipe extends React.Component {
                     <h2 key={counterKey++} >{recipe.recipe_name}</h2>
                     <h3 key={counterKey++} >Cuisine:  {recipe.recipe_cuisine}</h3>
                     <h3 key={counterKey++} >Category: {recipe.recipe_category}</h3>
-                    {(recipe.recipe_pic !== '') ? <img src={recipe.recipe_pic} alt={recipe.recipe_name} key={counterKey++} /> : '' }
+                    {(recipe.recipe_pic !== '') ? <img src={recipe.recipe_pic} alt={recipe.recipe_name} key={counterKey++} className='recipe_pic' /> : '' }
                 </div>
-            </div>
-            <div className='ingredientList' key={counterKey++}>
-                {ingredientList.map(ingredient =>
-                    <p className='ingredient' key={counterKey++}>{ingredient}</p>)}
+                <div className='ingredientList' key={counterKey++}>
+                    {ingredientList.map(ingredient =>
+                        <p className='ingredient' key={counterKey++}>{ingredient}</p>)}
+                </div>
             </div>
             <hr className='recipe-divider' key={counterKey++}/>
             <pre key={counterKey++}>{recipe.recipe_instructions}</pre>

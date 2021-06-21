@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import RecipeList from './RecipeList';
 import config from '../config';
 
-const myDebug = console.log;
-
 export default class RecipeResult extends Component {
 
     static defaultProps = {
@@ -45,10 +43,14 @@ export default class RecipeResult extends Component {
               console.error(error);
             });
     }
+    
     componentDidMount() {
         const search_id = this.props.match.params.search_id;
         const fetchType = this.props.fetchType;
-        this.fetchRecipeResult('meal-db-recipe', search_id);
+        if(fetchType === 'mealdb') {
+          this.fetchRecipeResult('meal-db-recipe', search_id);
+        }
+        
         
     }
 
@@ -66,5 +68,6 @@ export default class RecipeResult extends Component {
 }
 
 RecipeResult.propTypes = {
-    recipes: PropTypes.array
+    recipes: PropTypes.array,
+    fetchType: PropTypes.string
 }

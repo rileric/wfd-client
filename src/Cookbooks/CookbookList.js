@@ -2,14 +2,11 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Cookbook from './Cookbook';
 
-const myDebug=console.log;
-
 export default class CookbookList extends Component {
 
     static defaultProps = {
         cookbooks: []
     }
-
 
     render() {
 

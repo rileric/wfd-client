@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import ApiContext from '../ApiContext';
 import config from '../config';
 
-const myDebug = console.log;
-
 class AddCookbook extends Component {
 
     static contextType = ApiContext;

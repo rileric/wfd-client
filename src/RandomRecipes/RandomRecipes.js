@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import RecipeList from '../Recipes/RecipeList';
 import config from '../config';
 
-const myDebug = console.log;
-
 export default class RandomRecipes extends Component {
 
     static defaultProps = {

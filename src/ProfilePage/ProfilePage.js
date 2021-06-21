@@ -1,11 +1,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import CookbookList from '../Cookbooks/CookbookList';
+// import CookbookList from '../Cookbooks/CookbookList';  // Removed Cookbook functionality for now
 import RecipeList from '../Recipes/RecipeList';
 import LogoutButton from '../LoginSys/logout-button';
 import ApiContext from '../ApiContext';
-
-const myDebug=console.log;
 
 class ProfilePage extends Component {
 

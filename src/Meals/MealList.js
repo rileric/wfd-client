@@ -4,8 +4,6 @@ import Meal from './Meal';
 import ApiContext from '../ApiContext';
 import config from '../config';
 
-const myDebug = console.log;
-
 export default class MealList extends Component {
 
     static defaultProps = {
@@ -18,7 +16,8 @@ export default class MealList extends Component {
 
     state = {
         mealDBRecipes: [],
-        foundRecipes: []
+        foundRecipes: false,
+
     };
 
     static contextType = ApiContext;
@@ -35,15 +34,24 @@ export default class MealList extends Component {
             fetch(`${config.API_ENDPOINT}/${searchUrl}/${searchString}`, options),
           ])
             .then(([res]) => {
-              if(!res.ok) {
+                if(!res.ok) {
                 return res.json().then(err => Promise.reject(err));
-              }
+                }
                 return Promise.all( [res.json()] );           
             })
             .then(([resJson]) => {
-              this.setState({
-                  mealDBRecipes: resJson
-              });
+                if(resJson.message) {
+                    this.setState({
+                        foundRecipes: false
+                    })
+                }
+                else{
+                    this.setState({
+                        mealDBRecipes: resJson,
+                        foundRecipes: true
+                    });
+                }
+                
             })
             .catch(error => {
               console.error(error);
@@ -70,27 +78,33 @@ export default class MealList extends Component {
     render() {
         let meals = this.state.mealDBRecipes;
 
-        const searchString = this.props.match.params.searchString;
-        const mealRecipes = this.props.recipes;
-        const mealSearchType = this.props.searchType;
-
-        return (
-            <section className='MealList'>
-                <h2>Results</h2>
-                <ul className='MealList-list'>
-                    {meals.map( meal =>
-                        <li key={meal.recipe_id + '_' + meal.mealdb_id} className='MealList-item'>
-                            <Meal
-                                recipe_id={meal.recipe_id}
-                                mealdb_id={meal.mealdb_id}
-                                recipe_name={meal.recipe_name}
-                                recipe_pic={meal.recipe_pic}
-                            />
-                        </li> 
-                    )}
-                </ul>
-            </section>
-        )
+        if(this.state.foundRecipes) {
+            return (
+                <section className='MealList'>
+                    <h2>Results</h2>
+                    <ul className='MealList-list'>
+                        {meals.map( meal =>
+                            <li key={meal.recipe_id + '_' + meal.mealdb_id} className='MealList-item'>
+                                <Meal
+                                    recipe_id={meal.recipe_id}
+                                    mealdb_id={meal.mealdb_id}
+                                    recipe_name={meal.recipe_name}
+                                    recipe_pic={meal.recipe_pic}
+                                />
+                            </li> 
+                        )}
+                    </ul>
+                </section>
+            )
+        }
+        else {
+            return (
+                <section className='MealList'>
+                        <h2>Results</h2>
+                        <p>No recipes found.</p>
+                </section>
+            )
+        }
     }
 
         

@@ -8,7 +8,6 @@ export default class CategoryList extends Component {
         categories: []
     }
 
-
     render() {
         return (
             <section className='CategoryList'>

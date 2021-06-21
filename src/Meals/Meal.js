@@ -3,15 +3,12 @@ import { withRouter } from 'react-router-dom';
 import ApiContext from '../ApiContext';
 import PropTypes from 'prop-types';
 
-const myDebug = console.log;
-
 class Meal extends Component {
 
   static contextType = ApiContext;
 
   handleMealClick = e => {
     e.preventDefault();
-    const recipe_name = this.props.recipe_name;
     const recipe_id = this.props.recipe_id;
     const mealdb_id = this.props.mealdb_id;
 
@@ -21,7 +18,7 @@ class Meal extends Component {
   }
 
   render() {
-    const { recipe_id, recipe_name, mealdb_id, recipe_pic } = this.props
+    const { recipe_name, recipe_pic } = this.props
 
     return (
         <div className="Meal">

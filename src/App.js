@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route,Link} from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import ApiContext from './ApiContext';
 import config from './config';
 
@@ -21,8 +21,6 @@ import MobileMenu from './MobileMenu/MobileMenu';
 import RandomRecipes from './RandomRecipes/RandomRecipes';
 import RecipeResult from './Recipes/RecipeResult';
 import AddRecipe from './AddRecipe/AddRecipe';
-
-const myDebug = console.log;
 
 class App extends Component {
 

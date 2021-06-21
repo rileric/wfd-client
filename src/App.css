@@ -48,6 +48,14 @@ main {
     list-style: none;
 }
 
+/* Recipe formatting */
+.recipe-top {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
 .recipe-break {
     border: dotted #000000;
 }
@@ -92,7 +100,34 @@ textarea, select {
     background-color: #F4A261;
 }
 
+.MobileMenu__linkButton, .MobileMenuButton, .AuthNav__profile-button {
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118,118,118), rgb(133,133,133));
+    border-image: initial;
+    text-decoration: none;
+}
+
 /* Navigation */
+.App__header_top {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+}
+.MobileMenuButton  {
+    max-width: 300px;
+    text-align: center;
+    padding: 15px 100px;
+}
+
+.App__footer {
+    text-align: center;
+    padding: 20px;
+}
+
 nav {
     display: flex;
     justify-content: center;
@@ -136,6 +171,24 @@ nav ul li:last-child, .App__mobileMenu li:last-child {
     main {
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .App__header_top {
+        flex-direction: row;
+        text-align: right;
+    }
+
+    .AuthNav__profile-button, .login-btn {
+        width: 150px;
+        padding: 5px 20px;
+    }
+
+    .AuthNav__profile-button {
+        height: 3em;
+    }
+
+    .recipe-top {
+        flex-direction: row;
     }
 
     .CategoryList-list, .MealList-list, .CuisineList-list {

@@ -2,7 +2,6 @@ import { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const myDebug = console.log;
 class IngredientSearch extends Component {
 
     state = {};
@@ -22,7 +21,7 @@ class IngredientSearch extends Component {
 
         let ingredientList = [];
 
-        for(const [key,value] of Object.entries(this.state) ) {
+        for(const [key, value] of Object.entries(this.state) ) {
             let trimValue = value.trim();
             if(trimValue.length !== 0) {
                 ingredientList.push(value);

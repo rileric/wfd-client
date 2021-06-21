@@ -3,7 +3,6 @@ import config from '../config';
 import ApiContext from '../ApiContext';
 import { withRouter } from 'react-router-dom';
 
-const myDebug = console.log;
 class AddRecipe extends Component {
 
     static defaultProps = {
@@ -166,8 +165,6 @@ class AddRecipe extends Component {
                             onChange={this.handleInputChange}
                             required
                         />
-                    <label htmlFor='recipe_public'>Public: </label>
-                        <input type='checkbox' id='recipe_public' name='recipe_public' checked={this.state.recipe_public} onChange={e => this.handlePublicCheckbox(e)} />
                     <label htmlFor='recipe_category'>Category: </label>
                         <select id='recipe_category' name='recipe_category' onChange={this.handleInputChange}>
                             <option value='none'>Select one...</option>
@@ -182,6 +179,8 @@ class AddRecipe extends Component {
                         <textarea id='recipe_ingredient_list' name='recipe_ingredient_list' onChange={this.handleInputChange}></textarea>
                     <label htmlFor='recipe_instructions'>Instructions:</label>
                         <textarea id='recipe_instructions' name='recipe_instructions' onChange={this.handleInputChange}></textarea>
+                        <label htmlFor='recipe_public'>Public: </label>
+                        <input type='checkbox' id='recipe_public' name='recipe_public' checked={this.state.recipe_public} onChange={e => this.handlePublicCheckbox(e)} />
                     <button type='submit' className='recipeSubmit' id='recipeSubmit' disabled={this.validateName()}>Submit</button> 
                 </form>
             </section>          

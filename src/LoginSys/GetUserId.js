@@ -4,8 +4,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import ApiContext from '../ApiContext';
 import MenuButton from '../MenuButton/MenuButton';
 
-const myDebug = console.log;
-
 const GetUserId = () => {
 
     // For user logging

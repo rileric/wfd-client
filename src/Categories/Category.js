@@ -3,8 +3,6 @@ import { withRouter } from 'react-router-dom';
 import ApiContext from '../ApiContext';
 import PropTypes from 'prop-types';
 
-const myDebug = console.log;
-
 class Category extends Component {
 
   static contextType = ApiContext;
@@ -16,7 +14,7 @@ class Category extends Component {
   }
 
   render() {
-    const { category_id, category_name, category_description, category_pic } = this.props
+    const { category_name, category_description} = this.props
 
     return (
         <div className="Category">

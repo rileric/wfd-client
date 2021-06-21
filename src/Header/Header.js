@@ -29,10 +29,10 @@ const navBar = [
 function Header() {
   return (
     <header className='App__header'>
-      <h1>
-        <Link to='/' className='title'>What's for Dinner</Link>
+      <div className='App__header_top' >
+        <h1><Link to='/' className='title'>What's for Dinner</Link></h1>
         <AuthNav />
-      </h1>
+      </div>
       <NavBar menuList={navBar} />  
     </header>
   );
