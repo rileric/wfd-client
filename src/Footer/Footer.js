@@ -3,20 +3,20 @@ import { Link } from 'react-router-dom';
 import MenuButton from '../MenuButton/MenuButton';
 import NavBar from '../NavBar/NavBar';
 
-const footBar = [
-    {
+const footBar = [ // Removing Footer menu due to feedback
+    /* {
         buttonName:'About',
         buttonRoute:'/about',
     },
-    /* Removing cookbook functionality for now.
+    Removing cookbook functionality for now.
     {
         buttonName:'New Cookbook',
         buttonRoute:'/cookbooks/new',
-    }, */
+    },
     {
         buttonName:'Contact',
         buttonRoute:'/contact',
-    },
+    }, */
 
 ];
 

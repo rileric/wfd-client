@@ -1,0 +1,8 @@
+{
+    "name": "What's for Dinner",
+    "short_name": "WFD",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "start_url": "."
+}

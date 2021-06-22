@@ -100,14 +100,7 @@ textarea, select {
     background-color: #F4A261;
 }
 
-.MobileMenu__linkButton, .MobileMenuButton, .AuthNav__profile-button {
-    padding: 1px 6px;
-    border-width: 2px;
-    border-style: outset;
-    border-color: -internal-light-dark(rgb(118,118,118), rgb(133,133,133));
-    border-image: initial;
-    text-decoration: none;
-}
+
 
 /* Navigation */
 .App__header_top {
@@ -117,7 +110,7 @@ textarea, select {
     text-align: center;
     margin: auto;
 }
-.MobileMenuButton  {
+.MobileMenuButton, .login-btn  {
     max-width: 300px;
     text-align: center;
     padding: 15px 100px;
@@ -157,6 +150,21 @@ nav ul li:last-child, .App__mobileMenu li:last-child {
     text-align: center;
 }
 
+.MobileMenu__linkButton, .MobileMenuButton, .AuthNav__profile-button {
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118,118,118), rgb(133,133,133));
+    border-image: initial;
+    text-decoration: none;
+}
+
+.login-out-btns {
+    display: block;
+    margin: auto;
+    padding-bottom: 10px;
+    
+}
 
 /* Hide Navigation bar  */
 .App__footer .NavBar, .App__header .NavBar {
@@ -164,7 +172,7 @@ nav ul li:last-child, .App__mobileMenu li:last-child {
 }
 
 /* Wider Screen */
-@media all and (min-width: 800px) {
+@media all and (min-width: 900px) {
     nav ul {
         flex-direction: row;
     }
@@ -180,15 +188,17 @@ nav ul li:last-child, .App__mobileMenu li:last-child {
 
     .AuthNav__profile-button, .login-btn {
         width: 150px;
+        height: 80%;
         padding: 5px 20px;
-    }
-
-    .AuthNav__profile-button {
-        height: 3em;
     }
 
     .recipe-top {
         flex-direction: row;
+    }
+
+    .ingredientSearch, .ContactForm__wrapper, .AddRecipe, .about {
+        width: 80%;
+        margin: auto 10%;
     }
 
     .CategoryList-list, .MealList-list, .CuisineList-list {

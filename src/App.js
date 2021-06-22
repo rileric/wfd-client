@@ -235,8 +235,7 @@ class App extends Component {
         <div className='App'>
           <Header />
           <main className='App-main'>         
-            {this.renderScreenView()}
-            {/*AddRecipe */}         
+            {this.renderScreenView()}      
           </main>
           <Footer />
         </div>

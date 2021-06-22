@@ -1,13 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import App from './App';
+import Cookbook from './Cookbook';
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
+  const testCookbook = {
+    cookbook_id: '1',
+    cookbook_name: 'Test',
+    cookbook_owner: '1',
+    cookbook_public: true
+  }
   ReactDOM.render(
     <BrowserRouter>
-      <App />
+        <Cookbook
+            cookbook={testCookbook}
+        />
     </BrowserRouter>,
     div
   );

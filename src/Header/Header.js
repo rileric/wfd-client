@@ -24,6 +24,19 @@ const navBar = [
     buttonName:'New Recipe',
     buttonRoute:'/recipes/new',
   },
+  /* Removing cookbook functionality for now.
+  {
+      buttonName:'New Cookbook',
+      buttonRoute:'/cookbooks/new',
+  }, */
+  {
+    buttonName:'About',
+    buttonRoute:'/about',
+},
+{
+    buttonName:'Contact',
+    buttonRoute:'/contact',
+},
 ];
 
 function Header() {

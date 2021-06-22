@@ -200,7 +200,7 @@ const STORE = {
             "recipe_tags":["Savory","Breakfast"],
             "recipe_video":"https://www.youtube.com/watch?v=hTrSXryX31A",
             "recipe_public": "true"
-            }
+        }
     ],
 
     "cookbooks": [

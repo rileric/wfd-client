@@ -153,9 +153,9 @@ class AddRecipe extends Component {
         }
         
         return (
-            <section className='ingredientSearch'>
+            <section className='AddRecipe'>
                 <h2>{pageTitle}</h2>
-                <form className='ingredientSearchForm' onSubmit={e => this.handleSubmit(e)}>
+                <form className='addRecipeForm' onSubmit={e => this.handleSubmit(e)}>
                     <label htmlFor='recipe_name'>Recipe name: </label>
                         <input
                             type='text'
