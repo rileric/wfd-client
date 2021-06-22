@@ -176,9 +176,9 @@ class AddRecipe extends Component {
                             {cuisineListMenu}
                         </select>
                     <label htmlFor='recipe_ingredient_list'>Ingredients (each line should contain measurement and ingredient):</label>
-                        <textarea id='recipe_ingredient_list' name='recipe_ingredient_list' onChange={this.handleInputChange}></textarea>
+                        <textarea id='recipe_ingredient_list' name='recipe_ingredient_list' onChange={this.handleInputChange} rows='4'></textarea>
                     <label htmlFor='recipe_instructions'>Instructions:</label>
-                        <textarea id='recipe_instructions' name='recipe_instructions' onChange={this.handleInputChange}></textarea>
+                        <textarea id='recipe_instructions' name='recipe_instructions' onChange={this.handleInputChange} rows='6'></textarea>
                         <label htmlFor='recipe_public'>Public: </label>
                         <input type='checkbox' id='recipe_public' name='recipe_public' checked={this.state.recipe_public} onChange={e => this.handlePublicCheckbox(e)} />
                     <button type='submit' className='recipeSubmit' id='recipeSubmit' disabled={this.validateName()}>Submit</button> 

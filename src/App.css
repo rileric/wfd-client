@@ -68,14 +68,22 @@ img {
 }
 
 /* Buttons and Input */
-input {
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, select {
     background-color: #CFF2EE;
     height: 2em;
+    max-width: 300px;
     margin-bottom: 10px;
 }
 
-textarea, select {
+textarea {
     background-color: #CFF2EE;
+    max-width: 500px;
+    margin-bottom: 10px;
 }
 
 .youtubeButton {
@@ -98,6 +106,10 @@ textarea, select {
  .backButton:hover, .myCookbooksButton:hover, .myRecipesButton:hover, [type=submit]:hover,
   #contactFormSubmit:hover, .MobileMenu__linkButton:hover {
     background-color: #F4A261;
+}
+
+[type=submit] {
+    max-width: 400px;
 }
 
 

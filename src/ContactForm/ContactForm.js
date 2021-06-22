@@ -12,7 +12,7 @@ export default class ContactForm extends Component {
                     <label htmlFor='email'>Email:</label>
                     <input className='user-input' id='email' type='email' name='_replyto' required />
                     <label htmlFor='form-message'>Message:</label>
-                    <textarea id='form-message' name='message'></textarea>
+                    <textarea id='form-message' name='message' rows='8' ></textarea>
                     <input type='submit' id='contactFormSubmit' value='Send' />
                 </form>
             </section>            
