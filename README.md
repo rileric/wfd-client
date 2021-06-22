@@ -6,4 +6,7 @@ Users can also add their own recipes. To delete a recipe, please use the contact
 
 You can find recipes by category, cuisine, random, or by ingredients.
 
+Select a category or cuisine to see their recipes:
+[A list of American recipes](rileric.github.com/rileric.github.io/wfd/WFD-mealList.png)
+
 https://wfd-client.vercel.app/
