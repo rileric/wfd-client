@@ -13,6 +13,8 @@ header, footer {
     background-color: #264653;
     border: solid #000000;
     color: #FFFFFF;
+    min-height: 15vh;
+
 }
 
 .title {
@@ -20,14 +22,11 @@ header, footer {
     color: #FFFFFF;
 }
 
-footer {
-    min-height: 80px;
-}
-
 main {
     background-color: #2A9D8F;
     color:#FFFFFF;
     padding: 10px;
+    min-height: 70vh;
 }
 
 /* .CategoryList, .CuisineList, */

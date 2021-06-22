@@ -21,7 +21,7 @@ class IngredientSearch extends Component {
 
         let ingredientList = [];
 
-        for(const [key, value] of Object.entries(this.state) ) {
+        for(const value of Object.values(this.state) ) {
             let trimValue = value.trim();
             if(trimValue.length !== 0) {
                 ingredientList.push(value);
